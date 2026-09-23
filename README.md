@@ -8,11 +8,11 @@ bằng script deploy — đừng sửa trực tiếp.
 - Chính sách quyền riêng tư: https://mittohoa.github.io/nhipnha/privacy/
 - Xóa tài khoản: https://mittohoa.github.io/nhipnha/delete-account/
 
-Góp ý / yêu cầu: [Issues](https://github.com/mittohoa/nhipnha/issues) — đây là trang công khai,
-**đừng đăng email hay thông tin sức khỏe**.
+Liên hệ riêng tư: mittohoa@gmail.com · góp ý / báo lỗi công khai: [Issues](https://github.com/mittohoa/nhipnha/issues)
+— trang công khai, **đừng đăng email hay thông tin sức khỏe**.
 
 ---
 
 Public build of the Nhịp Nhà family-health app plus its privacy policy and account-deletion
-pages. Source code lives in a private repository. Please do not post personal or health
+pages. Contact: mittohoa@gmail.com. Source code lives in a private repository. Please do not post personal or health
 information in issues.
