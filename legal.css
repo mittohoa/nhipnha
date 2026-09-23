@@ -1,0 +1,23 @@
+/* Trang pháp lý công khai của Nhịp Nhà — cùng token màu/chữ với app (docs/DESIGN_TOKENS.md). */
+:root { --bone: #F3EEE6; --ink: #1B1A17; --muted: #4A463F; --pulse: #B8341C; --line: #d8d1c6; }
+@media (prefers-color-scheme: dark) {
+  :root { --bone: #171614; --ink: #F3EEE6; --muted: #B9B2A6; --pulse: #FF8A70; --line: #3a3733; }
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bone); color: var(--ink);
+  font-family: 'Be Vietnam Pro', system-ui, sans-serif; font-size: 16px; line-height: 1.65; }
+main { max-width: 720px; margin: 0 auto; padding: 48px 20px 80px; }
+.label { font-size: 12px; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; margin: 0 0 8px; }
+h1 { font-family: 'Barlow Condensed', system-ui, sans-serif; font-weight: 800; font-size: 56px; line-height: 1.12; margin: 0 0 8px; }
+h2 { font-family: 'Barlow Condensed', system-ui, sans-serif; font-weight: 800; font-size: 28px; line-height: 1.2; margin: 40px 0 8px; }
+h3 { font-size: 16px; margin: 24px 0 4px; }
+a { color: var(--pulse); font-weight: 600; }
+.meta { color: var(--muted); font-size: 14px; }
+.lang { display: flex; gap: 16px; margin: 24px 0 8px; }
+.lang a { text-decoration: none; border-bottom: 2px solid transparent; }
+.lang a:hover { border-color: var(--pulse); }
+hr { border: none; border-top: 1px solid var(--line); margin: 56px 0; }
+table { border-collapse: collapse; width: 100%; font-size: 15px; }
+td, th { border-bottom: 1px solid var(--line); padding: 8px 6px; text-align: left; vertical-align: top; }
+ol li, ul li { margin: 4px 0; }
+.note { border-left: 3px solid var(--pulse); padding: 4px 0 4px 14px; }
