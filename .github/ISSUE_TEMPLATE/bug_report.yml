@@ -1,0 +1,32 @@
+name: Báo lỗi / Bug report
+description: Báo lỗi ứng dụng Nhịp Nhà (thường được app điền sẵn thông tin kỹ thuật).
+title: "[Lỗi] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ⚠️ **Đây là trang công khai.** Đừng ghi email, tên thật, số đo hay bất kỳ thông tin sức khỏe nào.
+        **This page is public.** Do not include your email, real names, readings or health information.
+  - type: textarea
+    id: what
+    attributes:
+      label: Bạn đang làm gì khi gặp lỗi? / What were you doing?
+      placeholder: "Vd: bấm Lưu số đo huyết áp thì hiện lỗi mạng"
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Phiên bản / Version
+  - type: input
+    id: platform
+    attributes:
+      label: Nền tảng / Platform
+      placeholder: android · web · windows · linux
+  - type: textarea
+    id: errors
+    attributes:
+      label: Mã lỗi gần đây / Recent error codes
+      description: App điền sẵn — chỉ gồm thời điểm, nơi xảy ra và mã lỗi.
+      render: text
