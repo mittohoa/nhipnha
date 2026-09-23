@@ -12,7 +12,7 @@
 <main>
 <p class="label">Nhịp Nhà · com.mittohoa.famhealth_app</p>
 <h1 id="vi">Chính sách quyền riêng tư</h1>
-<p class="meta">Hiệu lực từ 23/09/2026 · Cập nhật lần cuối 24/09/2026</p>
+<p class="meta">Hiệu lực từ 23/09/2026 · Cập nhật lần cuối 24/09/2026 (bổ sung hồ sơ sức khỏe, liên hệ khẩn cấp, nhắc nhở, bảo mật trên máy)</p>
 <nav class="lang"><a href="#vi">Tiếng Việt</a><a href="#en">English</a><a href="../delete-account/">Xóa tài khoản</a></nav>
 
 <p>Nhịp Nhà là ứng dụng giúp một gia đình cùng ghi và theo dõi các chỉ số sức khỏe. Ứng dụng do một nhà phát triển cá nhân (tài khoản GitHub <a href="https://github.com/mittohoa">mittohoa</a>) phát triển. Trang này mô tả dữ liệu chúng tôi thu thập, lý do và cách bạn kiểm soát dữ liệu.</p>
@@ -23,8 +23,13 @@
 <tr><td>Email và mật khẩu (mật khẩu được mã hóa một chiều bởi dịch vụ xác thực)</td><td>Đăng nhập tài khoản</td></tr>
 <tr><td>Thông tin gia đình: tên gia đình, tên gọi từng người (Bố, Mẹ…), họ tên, năm sinh; tùy chọn: giới tính, nhóm máu, dị ứng, bệnh nền</td><td>Hiển thị hồ sơ từng người trong gia đình</td></tr>
 <tr><td>Chỉ số sức khỏe bạn nhập hoặc đọc từ thiết bị: huyết áp, nhịp tim, nhiệt độ, SpO2, cân nặng, đường huyết, thời điểm đo, ghi chú, mã thiết bị</td><td>Lưu lịch sử, hiển thị cho gia đình, tính cảnh báo theo ngưỡng</td></tr>
+<tr><td>Hồ sơ sức khỏe (tùy chọn): bệnh nền và tình trạng, dị ứng và mức độ, bác sĩ/nơi khám, ghi chú cho nhân viên y tế, số và hạn thẻ bảo hiểm y tế</td><td>Hồ sơ từng người và thẻ khẩn cấp</td></tr>
+<tr><td>Người liên hệ khẩn cấp do bạn nhập (tùy chọn): họ tên, quan hệ, số điện thoại. Ứng dụng <strong>không</strong> đọc danh bạ của máy</td><td>Hiện trên thẻ khẩn cấp, gọi nhanh khi cần</td></tr>
+<tr><td>Nhắc nhở: nội dung, thời điểm, lặp lại, đã làm hay chưa</td><td>Nhắc cả nhà đo, tái khám, xét nghiệm</td></tr>
+<tr><td>Mã bí mật từng hồ sơ — chỉ lưu dạng băm một chiều (bcrypt), không lưu mã gốc</td><td>Khóa xem hồ sơ sức khỏe từng người</td></tr>
 <tr><td>Mã mời gia đình</td><td>Cho người khác tham gia gia đình</td></tr>
-<tr><td>Cài đặt ngôn ngữ, giao diện sáng/tối</td><td>Chỉ lưu trên thiết bị của bạn</td></tr>
+<tr><td>Báo lỗi — chỉ khi bạn bấm Gửi: phiên bản, nền tảng, mã lỗi, mô tả bạn viết</td><td>Khắc phục lỗi</td></tr>
+<tr><td>Cài đặt ngôn ngữ, giao diện, khóa app (mật mã dạng băm), thông báo, chống chụp màn hình</td><td>Chỉ lưu trên thiết bị của bạn, không gửi lên máy chủ; xóa khi đăng xuất (trừ ngôn ngữ, giao diện)</td></tr>
 </table>
 <p>Ứng dụng <strong>không</strong> thu thập vị trí, danh bạ, ảnh, quảng cáo hay dữ liệu theo dõi hành vi, và <strong>không</strong> tích hợp SDK quảng cáo hoặc phân tích.</p>
 
@@ -36,6 +41,7 @@
 <li>Dữ liệu tài khoản và sức khỏe được lưu trên <strong>Supabase</strong> (máy chủ tại Seoul, Hàn Quốc), truyền qua kết nối mã hóa HTTPS.</li>
 <li>Quyền truy cập được giới hạn ở cấp cơ sở dữ liệu (Row Level Security): chỉ thành viên trong cùng gia đình mới xem được dữ liệu của gia đình đó.</li>
 <li>Chế độ "Xem thử với dữ liệu mẫu" không gửi dữ liệu nào lên máy chủ.</li>
+<li>Trên thiết bị: bạn có thể khóa ứng dụng bằng mật mã hoặc vân tay/khuôn mặt, chặn chụp màn hình (Android, Windows), và để thông báo nhắc ở chế độ kín (không hiện nội dung).</li>
 </ul>
 
 <h2>3. Chia sẻ dữ liệu</h2>
@@ -65,7 +71,7 @@
 
 <h1 id="en" lang="en">Privacy Policy</h1>
 <div lang="en">
-<p class="meta">Effective 23 September 2026 · Last updated 24 September 2026</p>
+<p class="meta">Effective 23 September 2026 · Last updated 24 September 2026 (added health record, emergency contacts, reminders, on-device security)</p>
 <p>Nhịp Nhà ("Family Pulse") helps a family record and follow health readings together. It is built by an individual developer (GitHub account <a href="https://github.com/mittohoa">mittohoa</a>). This page explains what data we collect, why, and how you control it.</p>
 
 <h2>1. Data we collect</h2>
@@ -74,8 +80,13 @@
 <tr><td>Email and password (the password is hashed by the authentication service)</td><td>Sign-in</td></tr>
 <tr><td>Family information: family name, member nicknames (Dad, Mom…), full names, birth year; optional: sex, blood type, allergies, conditions</td><td>Showing each family member's profile</td></tr>
 <tr><td>Health readings you enter or read from devices: blood pressure, heart rate, temperature, SpO2, weight, blood glucose, time, notes, device ID</td><td>History, sharing with your family, threshold alerts</td></tr>
+<tr><td>Health record (optional): conditions and their status, allergies and severity, doctor/clinic, a note for medical staff, health-insurance number and expiry</td><td>Each person's record and emergency card</td></tr>
+<tr><td>Emergency contacts you enter (optional): name, relationship, phone number. The app does <strong>not</strong> read your phone's contacts</td><td>Shown on the emergency card, quick call</td></tr>
+<tr><td>Reminders: text, time, repeat, done or not</td><td>Reminding the family to measure, see the doctor, get tests</td></tr>
+<tr><td>Per-profile secret code — stored only as a one-way hash (bcrypt), never the code itself</td><td>Locking each person's health record</td></tr>
 <tr><td>Family invite code</td><td>Letting others join your family</td></tr>
-<tr><td>Language and light/dark settings</td><td>Stored on your device only</td></tr>
+<tr><td>Problem reports — only when you tap Send: app version, platform, error codes, your description</td><td>Fixing bugs</td></tr>
+<tr><td>Language, theme, app lock (hashed passcode), notification and screenshot-protection settings</td><td>Stored on your device only, never sent to a server; removed on sign-out (except language and theme)</td></tr>
 </table>
 <p>The app does <strong>not</strong> collect location, contacts, photos, advertising or behavioural tracking data, and contains <strong>no</strong> advertising or analytics SDKs.</p>
 <h3>Bluetooth</h3>
@@ -86,6 +97,7 @@
 <li>Account and health data are stored with <strong>Supabase</strong> (servers in Seoul, South Korea) and sent over encrypted HTTPS.</li>
 <li>Access is restricted at the database level (Row Level Security): only members of the same family can see that family's data.</li>
 <li>"Try with sample data" mode sends nothing to any server.</li>
+<li>On your device you can lock the app with a passcode or fingerprint/face, block screenshots (Android, Windows), and keep reminder notifications private (no content shown).</li>
 </ul>
 
 <h2>3. Sharing</h2>
