@@ -12,7 +12,7 @@
 <main>
 <p class="label">Nhịp Nhà · com.mittohoa.famhealth_app</p>
 <h1 id="vi">Chính sách quyền riêng tư</h1>
-<p class="meta">Hiệu lực từ 23/09/2026 · Cập nhật lần cuối 24/09/2026 (bổ sung hồ sơ sức khỏe, liên hệ khẩn cấp, nhắc nhở, bảo mật trên máy, tủ thuốc, sổ tiêm, Health Connect, hỏi sổ tay, đọc vỏ hộp thuốc, sổ đi khám, xét nghiệm, tăng trưởng trẻ em, theo dõi sốt, dùng khi mất mạng)</p>
+<p class="meta">Hiệu lực từ 23/09/2026 · Cập nhật lần cuối 24/09/2026 (bổ sung hồ sơ sức khỏe, liên hệ khẩn cấp, nhắc nhở, bảo mật trên máy, tủ thuốc, sổ tiêm, Health Connect, hỏi sổ tay, đọc vỏ hộp thuốc, sổ đi khám, xét nghiệm, tăng trưởng trẻ em, theo dõi sốt, nhật ký triệu chứng, nơi đăng ký BHYT, chụp phiếu xét nghiệm, dùng khi mất mạng)</p>
 <nav class="lang"><a href="#vi">Tiếng Việt</a><a href="#en">English</a><a href="../delete-account/">Xóa tài khoản</a></nav>
 
 <p>Nhịp Nhà là ứng dụng giúp một gia đình cùng ghi và theo dõi các chỉ số sức khỏe. Ứng dụng do một nhà phát triển cá nhân (tài khoản GitHub <a href="https://github.com/mittohoa">mittohoa</a>) phát triển. Trang này mô tả dữ liệu chúng tôi thu thập, lý do và cách bạn kiểm soát dữ liệu.</p>
@@ -23,9 +23,10 @@
 <tr><td>Email và mật khẩu (mật khẩu được mã hóa một chiều bởi dịch vụ xác thực)</td><td>Đăng nhập tài khoản</td></tr>
 <tr><td>Thông tin gia đình: tên gia đình, tên gọi từng người (Bố, Mẹ…), họ tên, năm sinh; tùy chọn: giới tính, nhóm máu, dị ứng, bệnh nền</td><td>Hiển thị hồ sơ từng người trong gia đình</td></tr>
 <tr><td>Chỉ số sức khỏe bạn nhập hoặc đọc từ thiết bị: huyết áp, nhịp tim, nhiệt độ, SpO2, cân nặng, chiều cao, đường huyết, thời điểm đo, ghi chú, mã thiết bị</td><td>Lưu lịch sử, hiển thị cho gia đình, tính cảnh báo theo ngưỡng</td></tr>
-<tr><td>Hồ sơ sức khỏe (tùy chọn): bệnh nền và tình trạng, dị ứng và mức độ, bác sĩ/nơi khám, ghi chú cho nhân viên y tế, số và hạn thẻ bảo hiểm y tế</td><td>Hồ sơ từng người và thẻ khẩn cấp</td></tr>
+<tr><td>Hồ sơ sức khỏe (tùy chọn): bệnh nền và tình trạng, dị ứng và mức độ, bác sĩ/nơi khám, ghi chú cho nhân viên y tế, số, hạn thẻ và nơi đăng ký khám chữa bệnh ban đầu của thẻ bảo hiểm y tế (có hạn thẻ → app tự nhắc gia hạn)</td><td>Hồ sơ từng người và thẻ khẩn cấp</td></tr>
 <tr><td>Người liên hệ khẩn cấp do bạn nhập (tùy chọn): họ tên, quan hệ, số điện thoại. Ứng dụng <strong>không</strong> đọc danh bạ của máy</td><td>Hiện trên thẻ khẩn cấp, gọi nhanh khi cần</td></tr>
 <tr><td>Nhắc nhở: nội dung, thời điểm, lặp lại, đã làm hay chưa</td><td>Nhắc cả nhà đo, tái khám, xét nghiệm</td></tr>
+<tr><td>Nhật ký triệu chứng (tùy chọn): triệu chứng, mức độ, thời điểm, ghi chú</td><td>Xem lại khi đi khám, đưa vào báo cáo cho bác sĩ</td></tr>
 <tr><td>Theo dõi sốt (tùy chọn): lần cho uống thuốc hạ sốt — tên thuốc, lượng ghi tự do, thời điểm</td><td>Nhắc giờ sớm nhất được uống liều tiếp theo, đếm số liều trong 24 giờ</td></tr>
 <tr><td>Kết quả xét nghiệm (tùy chọn): tên xét nghiệm, kết quả, đơn vị, khoảng tham chiếu, ngày, nơi xét nghiệm</td><td>Theo dõi chỉ số theo thời gian, so với khoảng tham chiếu</td></tr>
 <tr><td>Sổ đi khám (tùy chọn): ngày khám, nơi khám, bác sĩ, lý do, chẩn đoán, lời dặn, hẹn tái khám</td><td>Lưu lịch sử khám của từng người, nhắc tái khám (nhắc chỉ ghi nơi khám)</td></tr>
@@ -65,12 +66,13 @@
 <li>Chúng tôi <strong>không bán</strong> dữ liệu và không chia sẻ cho bên thứ ba vì mục đích quảng cáo.</li>
 <li>Nhà cung cấp dịch vụ xử lý dữ liệu thay mặt chúng tôi: Supabase (lưu trữ, xác thực), Google Play (phân phối ứng dụng).</li>
 <li><strong>Đọc vỏ hộp thuốc (AI)</strong> — chỉ khi bạn bấm "Chụp vỏ hộp" và đã đồng ý: ảnh vỏ hộp được thu nhỏ trên máy rồi gửi tới <strong>Google Gemini</strong> để đọc tên thuốc, hoạt chất, hàm lượng, hạn dùng. Ảnh <strong>không được lưu</strong> ở máy chủ của chúng tôi; AI được yêu cầu bỏ qua mọi tên người trên nhãn. Bạn luôn xem lại trước khi lưu. Ứng dụng không xin quyền camera hay thư viện ảnh — dùng trình chụp/chọn ảnh của hệ thống.</li>
+<li><strong>Chụp phiếu xét nghiệm</strong> — ảnh phiếu được đọc chữ <strong>ngay trên điện thoại</strong> bằng Google ML Kit (qua Google Play services), <strong>không gửi</strong> tới máy chủ của chúng tôi hay tới AI, và bị xóa ngay sau khi đọc. Chỉ các dòng kết quả xét nghiệm được điền sẵn để bạn kiểm tra; họ tên, tuổi, mã bệnh nhân trên phiếu không được lưu. Google Play services có thể gửi cho Google thông tin chẩn đoán về hoạt động của bộ đọc chữ theo chính sách của Google.</li>
 <li><strong>Hỏi sổ tay (AI)</strong> — chỉ khi bạn bấm Hỏi và đã đồng ý: câu hỏi bạn gõ (tên người nhà được tự bỏ) được gửi tới <strong>Google Gemini</strong> để tóm tắt câu trả lời từ các bài sổ tay của app. Với gói miễn phí, Google có thể dùng nội dung này để cải thiện dịch vụ, vì vậy ứng dụng <strong>không gửi</strong> số đo, hồ sơ, thuốc, tiêm chủng hay bất kỳ dữ liệu nào từ Health Connect tới AI. Mỗi tài khoản tối đa 20 câu hỏi/ngày; máy chủ chỉ lưu số lượt, không lưu câu hỏi.</li>
 </ul>
 
 <h2>4. Lưu giữ và xóa dữ liệu</h2>
 <p>Dữ liệu được giữ đến khi bạn xóa. Bạn có thể xóa tài khoản ngay trong ứng dụng: <strong>Cài đặt (⚙) › Tài khoản › Xóa tài khoản</strong>. Việc xóa diễn ra ngay lập tức và không thể hoàn tác. Chi tiết: <a href="../delete-account/">trang Xóa tài khoản</a>.</p>
-<p>Bạn có thể <strong>tải về toàn bộ dữ liệu</strong> của gia đình bất cứ lúc nào: <strong>Cài đặt › Tài khoản › Xuất toàn bộ dữ liệu</strong> (file JSON đầy đủ + PDF tóm tắt; hồ sơ chi tiết chỉ kèm với người đã mở khóa bằng mã).</p>
+<p>Bạn có thể <strong>tải về toàn bộ dữ liệu</strong> của gia đình bất cứ lúc nào: <strong>Cài đặt › Tài khoản › Xuất toàn bộ dữ liệu</strong> (file JSON đầy đủ + PDF tóm tắt; hồ sơ chi tiết chỉ kèm với người đã mở khóa bằng mã). <strong>Báo cáo cho bác sĩ</strong> (PDF 30/90 ngày của một người) cũng được tạo ngay trên máy, không gửi lên máy chủ; bạn tự chọn lưu, in hay gửi cho ai.</p>
 
 <h2>5. Trẻ em</h2>
 <p>Cha mẹ hoặc người giám hộ có thể tạo hồ sơ cho trẻ em trong gia đình để ghi hộ số đo. Ứng dụng không dành cho trẻ em tự tạo tài khoản.</p>
@@ -88,7 +90,7 @@
 
 <h1 id="en" lang="en">Privacy Policy</h1>
 <div lang="en">
-<p class="meta">Effective 23 September 2026 · Last updated 24 September 2026 (added health record, emergency contacts, reminders, on-device security, medicine cabinet, vaccinations, Health Connect, handbook Q&A, medicine box reading, doctor visits, lab results, child growth, fever tracking, offline use)</p>
+<p class="meta">Effective 23 September 2026 · Last updated 24 September 2026 (added health record, emergency contacts, reminders, on-device security, medicine cabinet, vaccinations, Health Connect, handbook Q&A, medicine box reading, doctor visits, lab results, child growth, fever tracking, symptom diary, registered clinic, lab slip reading, offline use)</p>
 <p>Nhịp Nhà ("Family Pulse") helps a family record and follow health readings together. It is built by an individual developer (GitHub account <a href="https://github.com/mittohoa">mittohoa</a>). This page explains what data we collect, why, and how you control it.</p>
 
 <h2>1. Data we collect</h2>
@@ -97,9 +99,10 @@
 <tr><td>Email and password (the password is hashed by the authentication service)</td><td>Sign-in</td></tr>
 <tr><td>Family information: family name, member nicknames (Dad, Mom…), full names, birth year; optional: sex, blood type, allergies, conditions</td><td>Showing each family member's profile</td></tr>
 <tr><td>Health readings you enter or read from devices: blood pressure, heart rate, temperature, SpO2, weight, height, blood glucose, time, notes, device ID</td><td>History, sharing with your family, threshold alerts</td></tr>
-<tr><td>Health record (optional): conditions and their status, allergies and severity, doctor/clinic, a note for medical staff, health-insurance number and expiry</td><td>Each person's record and emergency card</td></tr>
+<tr><td>Health record (optional): conditions and their status, allergies and severity, doctor/clinic, a note for medical staff, health-insurance number, expiry and registered clinic (with an expiry date, the app reminds you to renew)</td><td>Each person's record and emergency card</td></tr>
 <tr><td>Emergency contacts you enter (optional): name, relationship, phone number. The app does <strong>not</strong> read your phone's contacts</td><td>Shown on the emergency card, quick call</td></tr>
 <tr><td>Reminders: text, time, repeat, done or not</td><td>Reminding the family to measure, see the doctor, get tests</td></tr>
+<tr><td>Symptom diary (optional): symptom, severity, time, note</td><td>Reviewing before appointments, included in the report for the doctor</td></tr>
 <tr><td>Fever tracking (optional): fever-medicine doses given — medicine, amount as written, time</td><td>Showing the earliest time for the next dose and counting doses in 24 hours</td></tr>
 <tr><td>Lab results (optional): test name, result, unit, reference range, date, lab</td><td>Track results over time against the reference range</td></tr>
 <tr><td>Doctor visits (optional): date, place, doctor, reason, diagnosis, advice, follow-up date</td><td>Keep each person's visit history and remind follow-ups (reminders show only the place)</td></tr>
@@ -138,12 +141,13 @@
 <li>We do <strong>not sell</strong> data or share it for advertising.</li>
 <li>Service providers processing data on our behalf: Supabase (hosting, authentication), Google Play (distribution).</li>
 <li><strong>Read a medicine box (AI)</strong> — only when you tap "Snap the box" and have agreed: the photo is downscaled on your device and sent to <strong>Google Gemini</strong> to read the medicine name, active ingredient, strength and expiry date. The photo is <strong>not stored</strong> on our servers; the AI is instructed to ignore any person's name on labels. You always review the result before saving. The app does not request camera or photo-library permission — it uses the system camera/photo picker.</li>
+<li><strong>Snap a lab slip</strong> — the slip photo is read <strong>on your phone</strong> by Google ML Kit (via Google Play services); it is <strong>not sent</strong> to our servers or to AI and is deleted right after reading. Only the test-result lines are filled in for you to check; the name, age and patient ID on the slip are not stored. Google Play services may send Google diagnostic information about the text reader under Google's policies.</li>
 <li><strong>Ask the handbook (AI)</strong> — only when you tap Ask and have agreed: the question you type (family names removed automatically) is sent to <strong>Google Gemini</strong> to summarise an answer from the app's handbook articles. On the free tier Google may use this content to improve its services, so the app <strong>never sends</strong> readings, records, medicines, vaccinations or any Health Connect data to AI. Up to 20 questions per account per day; the server stores only the count, not the questions.</li>
 </ul>
 
 <h2>4. Retention and deletion</h2>
 <p>Data is kept until you delete it. Delete your account in the app: <strong>Settings (⚙) › Account › Delete account</strong>. Deletion is immediate and cannot be undone. Details: <a href="../delete-account/#en">Delete account</a>.</p>
-<p>You can <strong>download all your family's data</strong> at any time: <strong>Settings › Account › Export all data</strong> (a complete JSON file + a PDF summary; detailed records are included only for people unlocked with their code).</p>
+<p>You can <strong>download all your family's data</strong> at any time: <strong>Settings › Account › Export all data</strong> (a complete JSON file + a PDF summary; detailed records are included only for people unlocked with their code). The <strong>report for the doctor</strong> (a 30/90-day PDF for one person) is also made on your device and never uploaded; you choose whether to save, print or send it.</p>
 
 <h2>5. Children</h2>
 <p>Parents or guardians may create profiles for children to record readings on their behalf. The app is not intended for children to create accounts.</p>
