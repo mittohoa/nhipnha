@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Tham gia gia đình · Nhịp Nhà</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@800&family=Be+Vietnam+Pro:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../legal.css">
+<style>
+  .code { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 56px; letter-spacing: 4px;
+          color: #C23A22; margin: 8px 0 4px; }
+  .btn { display: inline-block; padding: 12px 22px; border-radius: 999px; background: #1B1A17; color: #F3EFE8;
+         text-decoration: none; font-weight: 600; margin: 4px 8px 4px 0; }
+  .muted { color: #4A463F; font-size: 14px; }
+</style>
+</head>
+<body>
+<main>
+<p class="label">Nhịp Nhà · lời mời gia đình</p>
+<h1 id="vi">Tham gia gia đình trên Nhịp Nhà</h1>
+<nav class="lang"><a href="#vi">Tiếng Việt</a><a href="#en">English</a><a href="../privacy/">Chính sách quyền riêng tư</a></nav>
+
+<p>Mã mời của bạn:</p>
+<p class="code" data-code>—</p>
+<p class="muted" data-missing hidden>Đường dẫn không có mã. Hãy nhờ người nhà gửi lại mã 8 ký tự hoặc mã QR.</p>
+
+<h2>Cách tham gia</h2>
+<ol>
+<li>Cài <strong>Nhịp Nhà</strong> trên điện thoại Android (Google Play), hoặc dùng <a data-web href="../">bản web</a>.</li>
+<li>Tạo tài khoản của <strong>chính bạn</strong> (mỗi người một tài khoản — dữ liệu dùng chung trong gia đình).</li>
+<li>Chọn <strong>Có mã mời</strong> → <strong>Quét mã QR</strong> (hoặc gõ mã ở trên) → <strong>Tham gia</strong>.</li>
+<li>Chọn <strong>Tôi là …</strong> — tên của bạn trong danh sách gia đình (hoặc Thêm tôi).</li>
+</ol>
+<p><a class="btn" data-web href="../">Mở bản web với mã này</a></p>
+<p class="muted">Trẻ nhỏ, ông bà không dùng điện thoại không cần tham gia: người nhà thêm <strong>hồ sơ ghi hộ</strong> cho họ.
+Mã mời chỉ gửi cho người trong nhà; lỡ gửi nhầm, quản trị gia đình vào Cài đặt › Thành viên › Đổi mã.</p>
+
+<h1 id="en">Join a family on Nhịp Nhà</h1>
+<p>Your invite code:</p>
+<p class="code" data-code>—</p>
+<ol>
+<li>Install <strong>Nhịp Nhà</strong> on your Android phone (Google Play), or use the <a data-web href="../">web version</a>.</li>
+<li>Create <strong>your own</strong> account (one account per person — the data is shared within the family).</li>
+<li>Choose <strong>I have an invite code</strong> → <strong>Scan QR code</strong> (or type the code above) → <strong>Join</strong>.</li>
+<li>Pick <strong>I am …</strong> — your name in the family list (or add yourself).</li>
+</ol>
+<p><a class="btn" data-web href="../">Open the web version with this code</a></p>
+<p class="muted">Young children or grandparents without a phone don't need to join: the family adds a <strong>managed profile</strong>
+for them. Only share the code with family; if it was sent to the wrong person, the family admin can change it in Settings › Members.</p>
+</main>
+<script>
+  // Chỉ đọc mã từ đường dẫn để hiển thị — trang không gửi gì đi đâu.
+  (function () {
+    var raw = new URLSearchParams(location.search).get('code') || '';
+    var code = raw.toUpperCase().replace(/[^0-9A-F]/g, '');
+    var ok = /^[0-9A-F]{8}$/.test(code);
+    document.querySelectorAll('[data-code]').forEach(function (el) {
+      el.textContent = ok ? code.slice(0, 4) + ' ' + code.slice(4) : '—';
+    });
+    if (!ok) document.querySelector('[data-missing]').hidden = false;
+    if (ok) document.querySelectorAll('a[data-web]').forEach(function (a) {
+      a.href = '../?join=' + code;
+    });
+  })();
+</script>
+</body>
+</html>
