@@ -17,8 +17,8 @@ const RESOURCES = {"assets/AssetManifest.bin": "6fd1c03e16a588c0c357ef8fc3295cfc
 "assets/assets/guides/guides_en.md": "7e09c3ca94fe0171da4d8715d6cfce2a",
 "assets/assets/guides/guides_vi.md": "d0ff7b2603490b48798487894d51ddf0",
 "assets/FontManifest.json": "dc3d03800ccca4601324923c0b1d6d57",
-"assets/fonts/MaterialIcons-Regular.otf": "2cc59140483141e890d23bef6a78e8c5",
-"assets/NOTICES": "31bf137e6edae8a2178ccf22649df39e",
+"assets/fonts/MaterialIcons-Regular.otf": "d409cd342e5a35391e7f29d63e634b63",
+"assets/NOTICES": "0e5f16aa0af440f64011fdce84f82191",
 "assets/packages/cupertino_icons/assets/CupertinoIcons.ttf": "33b7d9392238c04c131b6ce224e13711",
 "assets/shaders/ink_sparkle.frag": "ecc85a2e95f5e9f53123dcaf8cb9b6ce",
 "canvaskit/canvaskit.js": "728b2d477d9b8c14593d4f9b82b484f3",
@@ -32,16 +32,16 @@ const RESOURCES = {"assets/AssetManifest.bin": "6fd1c03e16a588c0c357ef8fc3295cfc
 "canvaskit/skwasm.wasm": "39dd80367a4e71582d234948adc521c0",
 "favicon.png": "2ab1815a843cd234e53604cee22f6fe2",
 "flutter.js": "83d881c1dbb6d6bcd6b42e274605b69c",
-"flutter_bootstrap.js": "5f9db8c482417e048fe1554bad8de550",
+"flutter_bootstrap.js": "2bf2b591a140fb6e89e3aa5159b451d7",
 "icons/Icon-192.png": "9166e411023a84131eec1548ab88b21a",
 "icons/Icon-512.png": "e0ee82f46503a4182bb540d414aae14f",
 "icons/Icon-maskable-192.png": "9166e411023a84131eec1548ab88b21a",
 "icons/Icon-maskable-512.png": "e0ee82f46503a4182bb540d414aae14f",
 "index.html": "bfffe3692530730946af929c550e23e0",
 "/": "bfffe3692530730946af929c550e23e0",
-"main.dart.js": "c744b1c47f894eaee117b24c62e86cb0",
+"main.dart.js": "5c7286bee4efa3c63ba89e8b210a50dd",
 "manifest.json": "14c299a1f457173079ae890b7b8b6b40",
-"version.json": "0e4e483940210a72b53b4a089f92b442"};
+"version.json": "0289331aaea9da5b044390a38fb17154"};
 // The application shell files that are downloaded before a service worker can
 // start.
 const CORE = ["main.dart.js",
