@@ -1,0 +1,308 @@
+<!doctype html>
+<!--
+  Trang nhanh của Nhịp Nhà (docs/QUICK_PAGE.md): mở một liên kết là báo "Hôm nay tôi ổn", đánh dấu đã uống thuốc, ghi
+  nhanh số đo — không cài app, không đăng nhập. Cho iPhone / máy tính bảng / máy không có app.
+  Khóa nằm sau dấu # của liên kết (không gửi lên máy chủ web, không vào nhật ký truy cập). Khóa chỉ làm được các việc
+  trên cho đúng một hồ sơ (migration 3800) và thu hồi được trong app.
+-->
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<meta name="theme-color" content="#F3EEE6">
+<title>Nhịp Nhà · Tôi ổn</title>
+<link rel="icon" href="../icons/Icon-192.png">
+<link rel="apple-touch-icon" href="../icons/Icon-192.png">
+<style>
+  :root { --bone:#F3EEE6; --ink:#1B1A17; --muted:#4A463F; --pulse:#E0492F; --pulse-text:#B8341C; --ok:#1D7671;
+          --line:#d8d1c6; --field:#fffdf9; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bone:#171614; --ink:#F3EEE6; --muted:#B9B2A6; --pulse:#E0492F; --pulse-text:#FF8A70; --ok:#4FB3AA;
+            --line:#3a3733; --field:#211f1c; }
+  }
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { margin:0; background:var(--bone); color:var(--ink); font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+         font-size:18px; line-height:1.5; }
+  main { max-width:560px; margin:0 auto; padding: max(20px, env(safe-area-inset-top)) 20px 64px; }
+  .label { font-size:13px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin:0; }
+  h1 { font-size:34px; line-height:1.2; margin:4px 0 0; font-weight:800; }
+  h2 { font-size:15px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin:36px 0 10px; font-weight:700; }
+  .card { border:2px solid var(--ink); border-radius:24px; padding:18px; margin-top:20px; }
+  .status { font-size:20px; font-weight:700; margin:0; }
+  .status.late { color:var(--pulse-text); }
+  .status.done { color:var(--ok); }
+  .count { font-size:44px; font-weight:800; line-height:1.1; margin:6px 0 14px; font-variant-numeric: tabular-nums; }
+  button { font:inherit; border:0; cursor:pointer; color:inherit; }
+  .big { display:block; width:100%; min-height:88px; border-radius:44px; background:var(--pulse); color:#fff;
+         font-size:30px; font-weight:800; letter-spacing:.04em; }
+  .big:active { transform: scale(.98); }
+  .big[disabled] { opacity:.55; }
+  .done-box { display:flex; align-items:center; justify-content:center; min-height:88px; border-radius:44px;
+              border:2px solid var(--ok); color:var(--ok); font-size:24px; font-weight:800; text-align:center; padding:8px 16px; }
+  .row { display:flex; align-items:center; gap:12px; padding:14px 0; border-bottom:1px solid var(--line); }
+  .row > div { flex:1; min-width:0; }
+  .row b { display:block; font-size:19px; }
+  .row small { color:var(--muted); font-size:15px; }
+  .row small.late { color:var(--pulse-text); font-weight:700; }
+  .pill { min-height:52px; padding:0 20px; border-radius:26px; background:var(--pulse); color:#fff; font-weight:800; font-size:17px;
+          white-space:nowrap; }
+  .tabs { display:flex; flex-wrap:wrap; gap:8px; }
+  .tab { min-height:48px; padding:0 16px; border-radius:24px; border:2px solid var(--ink); background:transparent; font-weight:700; font-size:16px; }
+  .tab[aria-pressed="true"] { background:var(--ink); color:var(--bone); }
+  .fields { display:flex; align-items:flex-end; gap:10px; margin:14px 0; }
+  .fields label { flex:1; font-size:14px; color:var(--muted); font-weight:700; }
+  input { display:block; width:100%; margin-top:4px; min-height:60px; padding:8px 12px; font:inherit; font-size:28px; font-weight:800;
+          color:var(--ink); background:var(--field); border:2px solid var(--ink); border-radius:16px; text-align:center; }
+  .unit { padding-bottom:16px; color:var(--muted); font-weight:700; }
+  .save { display:block; width:100%; min-height:60px; border-radius:30px; background:var(--ink); color:var(--bone); font-size:20px; font-weight:800; }
+  .msg { margin:12px 0 0; font-weight:700; min-height:1.5em; }
+  .msg.err { color:var(--pulse-text); }
+  .msg.ok { color:var(--ok); }
+  .muted { color:var(--muted); font-size:15px; }
+  .hide { display:none !important; }
+  footer { margin-top:44px; }
+</style>
+</head>
+<body>
+<main>
+  <p class="label">Nhịp Nhà</p>
+  <h1 id="hello">…</h1>
+
+  <section id="problem" class="card hide">
+    <p class="status late" id="problemText"></p>
+  </section>
+
+  <section id="checkin" class="card hide" aria-live="polite">
+    <p class="status" id="ciStatus"></p>
+    <p class="count" id="ciCount"></p>
+    <button class="big" id="ciBtn"></button>
+    <div class="done-box hide" id="ciDone"></div>
+  </section>
+
+  <section id="doses" class="hide">
+    <h2 id="dosesTitle"></h2>
+    <div id="dosesList"></div>
+  </section>
+
+  <section id="log" class="hide">
+    <h2 id="logTitle"></h2>
+    <div class="tabs" id="tabs"></div>
+    <div class="fields" id="fields"></div>
+    <button class="save" id="saveBtn"></button>
+    <p class="msg" id="logMsg" aria-live="polite"></p>
+  </section>
+
+  <footer>
+    <p class="muted" id="tip"></p>
+    <p class="muted" id="sync"></p>
+  </footer>
+</main>
+
+<script src="config.js"></script>
+<script>
+(function () {
+  'use strict';
+  var vi = !/^en/i.test(navigator.language || 'vi');
+  var T = vi ? {
+    hello: 'Chào {n}', title: 'Tôi ổn', imOk: 'TÔI ỔN', due: 'Hạn báo ổn hôm nay: {t}', left: 'Còn', late: 'Đã quá giờ hạn {t}. Người nhà đã được báo — bấm để mọi người yên tâm.',
+    done: '✓ Đã báo ổn lúc {t}', queued: 'Đã ghi. Sẽ gửi khi có mạng.', noCheckin: 'Hồ sơ này chưa đặt giờ báo ổn. Vẫn bấm được để báo cho người nhà.',
+    doses: 'Thuốc hôm nay', taken: 'Đã uống', overdue: 'quá giờ', noDoses: 'Hôm nay không còn liều nào.',
+    log: 'Ghi nhanh số đo', save: 'LƯU SỐ ĐO', saved: '✓ Đã lưu {v}.', bad: 'Số chưa hợp lý, xem lại giúp nhé.', need: 'Nhập số trước đã.',
+    offline: 'Không có mạng — thử lại sau.', revoked: 'Liên kết này đã bị thu hồi hoặc không đúng. Nhờ người nhà tạo liên kết mới trong app Nhịp Nhà.',
+    nolink: 'Trang này cần mở bằng liên kết người nhà gửi cho bạn (tạo trong app Nhịp Nhà › trang một người › Hôm nay tôi ổn › Liên kết nhanh).',
+    noconfig: 'Trang chưa được cấu hình.', tip: 'Mẹo: thêm trang này ra màn hình chính (Chia sẻ › Thêm vào màn hình chính) để lần sau bấm một cái là tới.',
+    sync: 'Cập nhật lúc {t}',
+    v: { blood_pressure: 'Huyết áp', temperature: 'Nhiệt độ', weight: 'Cân nặng', spo2: 'SpO2', heart_rate: 'Nhịp tim', glucose: 'Đường huyết' },
+    sys: 'Tâm thu', dia: 'Tâm trương'
+  } : {
+    hello: 'Hello {n}', title: "I'm OK", imOk: "I'M OK", due: "Today's check-in is due at {t}", left: 'Left', late: 'Past the {t} check-in time. Your family was notified — tap so they know you are fine.',
+    done: '✓ Checked in at {t}', queued: 'Noted. It will be sent when you are online.', noCheckin: 'No check-in time is set for this profile. You can still tap to tell your family.',
+    doses: "Today's medicines", taken: 'Taken', overdue: 'overdue', noDoses: 'No more doses today.',
+    log: 'Quick log', save: 'SAVE READING', saved: '✓ Saved {v}.', bad: "That number doesn't look right — please check.", need: 'Enter a number first.',
+    offline: 'No connection — try again later.', revoked: 'This link was revoked or is not valid. Ask your family to create a new one in the Nhịp Nhà app.',
+    nolink: 'Open this page with the link your family sent you (created in the Nhịp Nhà app › a person\'s page › I\'m OK today › Quick link).',
+    noconfig: 'This page is not configured yet.', tip: 'Tip: add this page to your home screen (Share › Add to Home Screen) to reach it in one tap.',
+    sync: 'Updated at {t}',
+    v: { blood_pressure: 'Blood pressure', temperature: 'Temperature', weight: 'Weight', spo2: 'SpO2', heart_rate: 'Heart rate', glucose: 'Glucose' },
+    sys: 'Systolic', dia: 'Diastolic'
+  };
+  var UNITS = { blood_pressure: 'mmHg', temperature: '°C', weight: 'kg', spo2: '%', heart_rate: 'bpm', glucose: 'mmol/L' };
+  var $ = function (id) { return document.getElementById(id); };
+  var fmt = function (s, o) { return s.replace(/\{(\w+)\}/g, function (_, k) { return o[k]; }); };
+  var two = function (n) { return (n < 10 ? '0' : '') + n; };
+  var hm = function (d) { return two(d.getHours()) + ':' + two(d.getMinutes()); };
+  document.documentElement.lang = vi ? 'vi' : 'en';
+  document.title = 'Nhịp Nhà · ' + T.title;
+
+  // Khóa: sau dấu # (#k=…); nhớ lại trên máy để lần mở sau không cần liên kết đầy đủ.
+  var store = { get: function (k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
+                set: function (k, v) { try { v == null ? localStorage.removeItem(k) : localStorage.setItem(k, v); } catch (e) {} } };
+  var m = /[#&]k=([0-9a-f]{64})/.exec(location.hash || '');
+  var key = m ? m[1] : store.get('nhip.k');
+  if (m) store.set('nhip.k', key);
+
+  var cfg = window.NHIP_CONFIG || {};
+  var snap = null, timer = null, vtype = 'blood_pressure';
+
+  function problem(text) {
+    ['checkin', 'doses', 'log'].forEach(function (id) { $(id).classList.add('hide'); });
+    $('hello').textContent = 'Nhịp Nhà';
+    $('problemText').textContent = text;
+    $('problem').classList.remove('hide');
+  }
+
+  function rpc(fn, body) {
+    body.k = key;
+    var h = { 'Content-Type': 'application/json', apikey: cfg.key };
+    if (/^eyJ/.test(cfg.key)) h.Authorization = 'Bearer ' + cfg.key;
+    return fetch(cfg.url + '/rest/v1/rpc/' + fn, { method: 'POST', headers: h, body: JSON.stringify(body) })
+      .then(function (r) { return r.json().then(function (j) { return { ok: r.ok, body: j }; }); });
+  }
+
+  // Việc bấm lúc mất mạng: giữ lại, gửi khi có mạng (báo ổn giữ đúng lúc bấm).
+  function pending() { try { return JSON.parse(store.get('nhip.pend') || '[]'); } catch (e) { return []; } }
+  function flush() {
+    var q = pending();
+    if (!q.length) return Promise.resolve();
+    var item = q[0];
+    return rpc(item.fn, item.body).then(function () {
+      store.set('nhip.pend', JSON.stringify(pending().slice(1)));
+      return flush();
+    });
+  }
+
+  function me() { return snap && snap.checkins.filter(function (c) { return c.mine; })[0]; }
+  function pressedAt() { var p = store.get('nhip.pressed'); return p && p.slice(0, 10) === snap.day ? new Date(p.slice(11)) : null; }
+
+  function renderCheckin() {
+    var c = me(), box = $('checkin');
+    box.classList.remove('hide');
+    var doneAt = c && c.at ? new Date(c.at) : pressedAt();
+    var st = $('ciStatus'), cnt = $('ciCount'), btn = $('ciBtn'), done = $('ciDone');
+    btn.textContent = T.imOk;
+    if (doneAt) {
+      st.className = 'status done'; st.textContent = '';
+      cnt.textContent = ''; btn.classList.add('hide');
+      done.classList.remove('hide');
+      done.textContent = fmt(T.done, { t: hm(doneAt) }) + (c && c.at ? '' : ' · ' + T.queued);
+      return;
+    }
+    btn.classList.remove('hide'); done.classList.add('hide');
+    if (!c) { st.className = 'status'; st.textContent = T.noCheckin; cnt.textContent = ''; return; }
+    var p = c.by.split(':'), d = new Date(); d.setHours(+p[0], +p[1], 0, 0);
+    var left = d - new Date();
+    if (left <= 0) {
+      st.className = 'status late'; st.textContent = fmt(T.late, { t: c.by }); cnt.textContent = '';
+    } else {
+      st.className = 'status'; st.textContent = fmt(T.due, { t: c.by });
+      var s = Math.floor(left / 1000);
+      cnt.textContent = T.left + ' ' + Math.floor(s / 3600) + ':' + two(Math.floor(s % 3600 / 60)) + ':' + two(s % 60);
+    }
+  }
+
+  function renderDoses() {
+    var list = $('dosesList'); list.textContent = '';
+    $('doses').classList.remove('hide');
+    $('dosesTitle').textContent = T.doses;
+    if (!snap.doses.length) {
+      var p = document.createElement('p'); p.className = 'muted'; p.textContent = T.noDoses; list.appendChild(p); return;
+    }
+    snap.doses.forEach(function (d) {
+      var row = document.createElement('div'); row.className = 'row';
+      var info = document.createElement('div');
+      var b = document.createElement('b'); b.textContent = d.title;
+      var late = new Date(d.due) < new Date();
+      var s = document.createElement('small'); s.textContent = d.time + (late ? ' · ' + T.overdue : '');
+      if (late) s.className = 'late';
+      info.appendChild(b); info.appendChild(s);
+      var btn = document.createElement('button'); btn.className = 'pill'; btn.textContent = T.taken;
+      btn.onclick = function () {
+        btn.disabled = true;
+        snap.doses = snap.doses.filter(function (x) { return x.id !== d.id; });
+        renderDoses();
+        rpc('widget_take_dose', { rid: d.id }).then(load, function () {
+          store.set('nhip.pend', JSON.stringify(pending().concat([{ fn: 'widget_take_dose', body: { rid: d.id } }])));
+        });
+      };
+      row.appendChild(info); row.appendChild(btn); list.appendChild(row);
+    });
+  }
+
+  function renderLog() {
+    $('log').classList.remove('hide');
+    $('logTitle').textContent = T.log; $('saveBtn').textContent = T.save;
+    var tabs = $('tabs'); tabs.textContent = '';
+    Object.keys(T.v).forEach(function (t) {
+      var b = document.createElement('button'); b.className = 'tab'; b.textContent = T.v[t];
+      b.setAttribute('aria-pressed', String(t === vtype));
+      b.onclick = function () { vtype = t; $('logMsg').textContent = ''; renderLog(); };
+      tabs.appendChild(b);
+    });
+    var f = $('fields'); f.textContent = '';
+    (vtype === 'blood_pressure' ? [T.sys, T.dia] : [T.v[vtype]]).forEach(function (name, i) {
+      var l = document.createElement('label'); l.textContent = name;
+      var inp = document.createElement('input'); inp.id = 'v' + i; inp.inputMode = 'decimal'; inp.autocomplete = 'off';
+      l.appendChild(inp); f.appendChild(l);
+    });
+    var u = document.createElement('span'); u.className = 'unit'; u.textContent = UNITS[vtype]; f.appendChild(u);
+  }
+
+  function num(id) { var e = $(id); return e ? parseFloat(String(e.value).replace(',', '.')) : NaN; }
+  $('saveBtn').onclick = function () {
+    var msg = $('logMsg'), v = num('v0'), v2 = vtype === 'blood_pressure' ? num('v1') : null;
+    if (isNaN(v) || (vtype === 'blood_pressure' && isNaN(v2))) { msg.className = 'msg err'; msg.textContent = T.need; return; }
+    $('saveBtn').disabled = true;
+    rpc('widget_log_vital', { vtype: vtype, v: v, v2: v2 }).then(function (r) {
+      $('saveBtn').disabled = false;
+      if (r.ok && r.body) {
+        msg.className = 'msg ok';
+        msg.textContent = fmt(T.saved, { v: T.v[vtype] + ' ' + (v2 == null ? v : v + '/' + v2) + ' ' + UNITS[vtype] });
+        renderLog();
+      } else { msg.className = 'msg err'; msg.textContent = r.ok ? T.revoked : T.bad; }
+    }, function () { $('saveBtn').disabled = false; msg.className = 'msg err'; msg.textContent = T.offline; });
+  };
+
+  $('ciBtn').onclick = function () {
+    var now = new Date(), c = me();
+    var target = c ? c.id : (snap.me && snap.me.id);
+    if (!target) return;
+    store.set('nhip.pressed', snap.day + 'T' + now.toISOString());
+    renderCheckin();
+    var body = { pid: target, pressed: now.toISOString() };
+    rpc('widget_checkin', body).then(load, function () {
+      store.set('nhip.pend', JSON.stringify(pending().concat([{ fn: 'widget_checkin', body: body }])));
+    });
+  };
+
+  function render() {
+    $('problem').classList.add('hide');
+    $('hello').textContent = snap.me ? fmt(T.hello, { n: snap.me.name }) : 'Nhịp Nhà';
+    renderCheckin(); renderDoses();
+    if (snap.me && $('log').classList.contains('hide')) renderLog();
+    $('tip').textContent = T.tip;
+    $('sync').textContent = fmt(T.sync, { t: hm(new Date()) });
+    clearInterval(timer);
+    timer = setInterval(renderCheckin, 1000);
+  }
+
+  function load() {
+    return flush().catch(function () {}).then(function () { return rpc('widget_snapshot', {}); }).then(function (r) {
+      if (!r.ok || !r.body || r.body.error) { store.set('nhip.k', null); problem(T.revoked); return; }
+      snap = r.body; render();
+    }, function () { if (!snap) problem(T.offline); });
+  }
+
+  if (!cfg.url || !cfg.key) { problem(T.noconfig); return; }
+  if (!key) { problem(T.nolink); return; }
+  load();
+  // Dữ liệu tự cập nhật: mỗi phút, khi quay lại trang, khi có mạng lại.
+  setInterval(function () { if (!document.hidden) load(); }, 60000);
+  document.addEventListener('visibilitychange', function () { if (!document.hidden) load(); });
+  window.addEventListener('online', load);
+})();
+</script>
+</body>
+</html>

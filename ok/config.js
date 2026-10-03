@@ -1,0 +1,1 @@
+window.NHIP_CONFIG = {"key":"sb_publishable_HCzWWAyj099fqEj2YZllvQ_1I_I2r-p","url":"https://zimcxfsmldoamzvulcqf.supabase.co"};
